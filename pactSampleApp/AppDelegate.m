@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PCNewsTableVC.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    // Override point for customization after application launch.
+    
+    PCNewsTableVC *newsTableViewController = [[[PCNewsTableVC alloc] init] autorelease];
+    
+    [self.window setRootViewController:newsTableViewController];
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

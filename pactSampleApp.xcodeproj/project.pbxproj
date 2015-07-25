@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		0F7401BE1B632C3900120EC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401BD1B632C3900120EC3 /* main.m */; };
 		0F7401C11B632C3900120EC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401C01B632C3900120EC3 /* AppDelegate.m */; };
-		0F7401C41B632C3900120EC3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401C31B632C3900120EC3 /* ViewController.m */; };
-		0F7401C71B632C3900120EC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F7401C51B632C3900120EC3 /* Main.storyboard */; };
 		0F7401C91B632C3900120EC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7401C81B632C3900120EC3 /* Images.xcassets */; };
-		0F7401CC1B632C3900120EC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F7401CA1B632C3900120EC3 /* LaunchScreen.xib */; };
 		0F7401D81B632C3900120EC3 /* pactSampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401D71B632C3900120EC3 /* pactSampleAppTests.m */; };
+		0F7401E31B6339B700120EC3 /* PCNewsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +30,12 @@
 		0F7401BD1B632C3900120EC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0F7401BF1B632C3900120EC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0F7401C01B632C3900120EC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0F7401C21B632C3900120EC3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0F7401C31B632C3900120EC3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0F7401C61B632C3900120EC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F7401C81B632C3900120EC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0F7401CB1B632C3900120EC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0F7401D11B632C3900120EC3 /* pactSampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pactSampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7401D61B632C3900120EC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F7401D71B632C3900120EC3 /* pactSampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pactSampleAppTests.m; sourceTree = "<group>"; };
+		0F7401E11B6339B700120EC3 /* PCNewsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCNewsTableVC.h; sourceTree = "<group>"; };
+		0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCNewsTableVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +59,8 @@
 		0F7401AF1B632C3900120EC3 = {
 			isa = PBXGroup;
 			children = (
+				0F7401E11B6339B700120EC3 /* PCNewsTableVC.h */,
+				0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */,
 				0F7401BA1B632C3900120EC3 /* pactSampleApp */,
 				0F7401D41B632C3900120EC3 /* pactSampleAppTests */,
 				0F7401B91B632C3900120EC3 /* Products */,
@@ -83,11 +81,7 @@
 			children = (
 				0F7401BF1B632C3900120EC3 /* AppDelegate.h */,
 				0F7401C01B632C3900120EC3 /* AppDelegate.m */,
-				0F7401C21B632C3900120EC3 /* ViewController.h */,
-				0F7401C31B632C3900120EC3 /* ViewController.m */,
-				0F7401C51B632C3900120EC3 /* Main.storyboard */,
 				0F7401C81B632C3900120EC3 /* Images.xcassets */,
-				0F7401CA1B632C3900120EC3 /* LaunchScreen.xib */,
 				0F7401BB1B632C3900120EC3 /* Supporting Files */,
 			);
 			path = pactSampleApp;
@@ -199,8 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F7401C71B632C3900120EC3 /* Main.storyboard in Resources */,
-				0F7401CC1B632C3900120EC3 /* LaunchScreen.xib in Resources */,
 				0F7401C91B632C3900120EC3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +211,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F7401C41B632C3900120EC3 /* ViewController.m in Sources */,
 				0F7401C11B632C3900120EC3 /* AppDelegate.m in Sources */,
 				0F7401BE1B632C3900120EC3 /* main.m in Sources */,
+				0F7401E31B6339B700120EC3 /* PCNewsTableVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,25 +234,6 @@
 			targetProxy = 0F7401D21B632C3900120EC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		0F7401C51B632C3900120EC3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0F7401C61B632C3900120EC3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0F7401CA1B632C3900120EC3 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0F7401CB1B632C3900120EC3 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0F7401D91B632C3900120EC3 /* Debug */ = {
@@ -347,6 +320,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = pactSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = pactSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

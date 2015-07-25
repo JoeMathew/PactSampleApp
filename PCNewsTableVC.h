@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PCNewsTableVC.h
 //  pactSampleApp
 //
 //  Created by Joe Mathew on 25/07/2015.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface PCNewsTableVC : UITableViewController
 
 @end
-
