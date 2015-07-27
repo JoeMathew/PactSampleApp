@@ -11,7 +11,6 @@
 @interface PCNewsTableViewCell : UITableViewCell {
 
 }
-
 @property(nonatomic,retain) NSMutableDictionary *cellData;
 @property(nonatomic,retain) UIImageView *contentImageView;
 @property(nonatomic,retain) UIImage *contentImage;

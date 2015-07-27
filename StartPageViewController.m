@@ -75,7 +75,6 @@
     PCNewsTableVC *pcTableVC = [[[PCNewsTableVC alloc]init] autorelease];
     UINavigationController *navigationController = [[[UINavigationController alloc] init] autorelease];
     navigationController.viewControllers=[NSArray arrayWithObject:pcTableVC];
-    
 
     //Fetch web data asynchronously
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -88,8 +87,8 @@
         webResponse             = [NSJSONSerialization JSONObjectWithData:responseData
                                                                             options:NSJSONReadingMutableContainers
                                                                               error:&error];
-        pcTableVC.tableTitle     = webResponse[@"title"];
-        pcTableVC.rowData        = webResponse[@"rows"];
+        pcTableVC.tableTitle    = webResponse[@"title"];
+        pcTableVC.rowData       = webResponse[@"rows"];
         
         dispatch_async(dispatch_get_main_queue(),^{
             [_spinner stopAnimating];   //We got the data; dismiss the spinner
@@ -117,11 +116,9 @@
     hostname = "google.com";
     hostinfo = gethostbyname (hostname);
     if (hostinfo == NULL){
-        NSLog(@"No connection!\n");
         return NO;
     }
     else{
-        NSLog(@"Connection OK!\n");
         return YES;
     }
 }

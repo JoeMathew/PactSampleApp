@@ -31,9 +31,7 @@
     self.activeDownload = [NSMutableData data];
     
     NSURLRequest *request = [[NSURLRequest requestWithURL:[NSURL URLWithString:self.cellData[@"imageHref"]]] autorelease];
-    NSURLConnection *conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
-    
-    self.imageConnection = conn;
+    self.imageConnection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -44,24 +42,6 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.activeDownload appendData:data];
-}
-
-// -------------------------------------------------------------------------------
-//	connection:didFailWithError:error
-// -------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    // Clear the activeDownload property to allow later attempts
-    /*if (self.activeDownload) {
-        [self.activeDownload release];
-        self.activeDownload = nil;
-    }
-    
-    // Release the connection now that it's finished
-    if (self.imageConnection) {
-        [self.imageConnection release];
-        self.imageConnection = nil;
-    }*/
 }
 
 // -------------------------------------------------------------------------------

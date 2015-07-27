@@ -23,10 +23,9 @@
     // Override point for customization after application launch.
     
     StartPageViewController *startPageVC = [[[StartPageViewController alloc] init] autorelease];
-    
     [self.window setRootViewController:startPageVC];
-    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
