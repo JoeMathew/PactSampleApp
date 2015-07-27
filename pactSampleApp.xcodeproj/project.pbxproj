@@ -12,6 +12,9 @@
 		0F7401C91B632C3900120EC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7401C81B632C3900120EC3 /* Images.xcassets */; };
 		0F7401D81B632C3900120EC3 /* pactSampleAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401D71B632C3900120EC3 /* pactSampleAppTests.m */; };
 		0F7401E31B6339B700120EC3 /* PCNewsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */; };
+		0F7401E61B6340D000120EC3 /* PCNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401E51B6340D000120EC3 /* PCNewsTableViewCell.m */; };
+		0F7401E91B63C57500120EC3 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401E81B63C57500120EC3 /* StartPageViewController.m */; };
+		0F7401EC1B65CF1200120EC3 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7401EB1B65CF1200120EC3 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,12 @@
 		0F7401D71B632C3900120EC3 /* pactSampleAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pactSampleAppTests.m; sourceTree = "<group>"; };
 		0F7401E11B6339B700120EC3 /* PCNewsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCNewsTableVC.h; sourceTree = "<group>"; };
 		0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCNewsTableVC.m; sourceTree = "<group>"; };
+		0F7401E41B6340D000120EC3 /* PCNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCNewsTableViewCell.h; sourceTree = "<group>"; };
+		0F7401E51B6340D000120EC3 /* PCNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCNewsTableViewCell.m; sourceTree = "<group>"; };
+		0F7401E71B63C57500120EC3 /* StartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
+		0F7401E81B63C57500120EC3 /* StartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
+		0F7401EA1B65CF1200120EC3 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		0F7401EB1B65CF1200120EC3 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +68,12 @@
 		0F7401AF1B632C3900120EC3 = {
 			isa = PBXGroup;
 			children = (
+				0F7401EA1B65CF1200120EC3 /* ImageDownloader.h */,
+				0F7401EB1B65CF1200120EC3 /* ImageDownloader.m */,
+				0F7401E71B63C57500120EC3 /* StartPageViewController.h */,
+				0F7401E81B63C57500120EC3 /* StartPageViewController.m */,
+				0F7401E41B6340D000120EC3 /* PCNewsTableViewCell.h */,
+				0F7401E51B6340D000120EC3 /* PCNewsTableViewCell.m */,
 				0F7401E11B6339B700120EC3 /* PCNewsTableVC.h */,
 				0F7401E21B6339B700120EC3 /* PCNewsTableVC.m */,
 				0F7401BA1B632C3900120EC3 /* pactSampleApp */,
@@ -211,9 +226,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7401EC1B65CF1200120EC3 /* ImageDownloader.m in Sources */,
 				0F7401C11B632C3900120EC3 /* AppDelegate.m in Sources */,
 				0F7401BE1B632C3900120EC3 /* main.m in Sources */,
 				0F7401E31B6339B700120EC3 /* PCNewsTableVC.m in Sources */,
+				0F7401E61B6340D000120EC3 /* PCNewsTableViewCell.m in Sources */,
+				0F7401E91B63C57500120EC3 /* StartPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

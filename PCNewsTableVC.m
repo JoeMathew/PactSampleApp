@@ -7,21 +7,19 @@
 //
 
 #import "PCNewsTableVC.h"
+#import "PCNewsTableViewCell.h"
+#import "ImageDownloader.h"
+
+#define kWebDataUrl @"https://dl.dropboxusercontent.com/u/746330/facts.json"
 
 @interface PCNewsTableVC ()
-
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @end
 
 @implementation PCNewsTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +27,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source/delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -38,61 +36,73 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [_rowData count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _tableTitle;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [PCNewsTableViewCell getCellHeightForContent:_rowData[indexPath.row]];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pctCell" forIndexPath:indexPath];
     
+    PCNewsTableViewCell *pctCell = [tableView dequeueReusableCellWithIdentifier:@"pctCell"];
+    
+    if (!pctCell) {
+        pctCell = [[[PCNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
+                                             reuseIdentifier:@"pctCell"] autorelease];
+    }
     
     // Configure the cell...
+    pctCell.cellData = _rowData[indexPath.row];
+    [pctCell configureContent:indexPath];
     
-    return cell;
+    //If Image is not already downloaded and the image url is not null, start downloading the image for the row
+    if ((!(_rowData[indexPath.row])[@"image"]) &&
+        (![(id)[NSNull null] isEqual: (_rowData[indexPath.row])[@"imageHref"]])) {
+        //To keep the tableview scrolling smooth...
+        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+        {
+            [self startImgDownload:_rowData[indexPath.row] forIndexPath:indexPath];
+        }
+        // if a download is deferred or in progress, return a placeholder image
+        //pctCell.contentImageView.image = [UIImage imageNamed:@"Placeholder.png"];
+    } else {
+        NSLog(@"Reusing Image");
+        pctCell.imageView.image = (_rowData[indexPath.row])[@"image"];
+    }
+    
+    return pctCell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+// -------------------------------------------------------------------------------
+//	- (void)startImgDownload:(NSMutableDictionary *)cellData forIndexPath:(NSIndexPath *)indexPath
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//  Start image download. Implements completion handler because by the time downlad is completed asynchronously
+//  the table cell might represent a different row
+// -------------------------------------------------------------------------------
+- (void)startImgDownload:(NSMutableDictionary *)cellData forIndexPath:(NSIndexPath *)indexPath
+{
+    ImageDownloader *imageDownloader = (self.imageDownloadsInProgress)[indexPath];
+    if (nil == imageDownloader)
+    {
+        imageDownloader = [[[ImageDownloader alloc] init] autorelease];
+        imageDownloader.cellData = cellData;
+        [imageDownloader setCompletionHandler:^{
+            PCNewsTableViewCell *cell = (PCNewsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            if (nil != cellData[@"image"]) {
+                UIImage *img = (UIImage *)cellData[@"image"];
+                cell.contentImageView.image = img;
+            }
+            [self.imageDownloadsInProgress removeObjectForKey:indexPath];
+        }];
+        (self.imageDownloadsInProgress)[indexPath] = imageDownloader;
+        [imageDownloader startDownload];
+    }
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

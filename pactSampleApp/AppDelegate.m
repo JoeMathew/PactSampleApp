@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "PCNewsTableVC.h"
+#import "StartPageViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,9 +22,9 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     
-    PCNewsTableVC *newsTableViewController = [[[PCNewsTableVC alloc] init] autorelease];
+    StartPageViewController *startPageVC = [[[StartPageViewController alloc] init] autorelease];
     
-    [self.window setRootViewController:newsTableViewController];
+    [self.window setRootViewController:startPageVC];
     
     [self.window makeKeyAndVisible];
     return YES;

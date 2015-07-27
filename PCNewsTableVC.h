@@ -10,4 +10,7 @@
 
 @interface PCNewsTableVC : UITableViewController
 
+@property(nonatomic, retain) NSMutableArray *rowData;
+@property(nonatomic, retain) NSString *tableTitle;
+
 @end
