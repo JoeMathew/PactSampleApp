@@ -31,7 +31,8 @@
         _titleLabel       = [[[UILabel alloc] init]autorelease];
         [_titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:18.0f]];
         _contentLabel     = [[[UILabel alloc]init]autorelease];
-        _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(220, 20, kImageMaxWidth, 35)];
+        _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width - kImageMaxWidth - kPadding_side,
+                                                                          20, kImageMaxWidth, kImageMaxHeight)];
     }
     return self;
 }
@@ -45,15 +46,17 @@
 //  Configure the cell content. Set text in Title label and content label.
 // -------------------------------------------------------------------------------
 - (void)configureContent:(NSIndexPath*) indexPath {
-    NSLog(@"CellData = %@", _cellData);
     
     [_titleLabel setFrame:CGRectMake(kPadding_side, kPadding_side, kTitleMaxWidth, [PCNewsTableViewCell heigtForLabelString:_cellData[@"title"]
                                                                                       forWidth:kTitleMaxWidth
                                                                                       withFont:[UIFont fontWithName:@"HelveticaNeue" size:18.0f]])];
+    _titleLabel.numberOfLines = 0;
     if (![(id)[NSNull null] isEqual:_cellData[@"title"]]) {
         _titleLabel.text = _cellData[@"title"];
     }
-    _titleLabel.textColor = [UIColor colorWithRed:(20/255.0) green:(50/255.0) blue:(250/255.0) alpha:1];
+    _titleLabel.textColor = [UIColor colorWithRed:(20/255.0) green:(50/255.0) blue:(200/255.0) alpha:1];
+    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
     [self.contentView addSubview:_titleLabel];
 
     CGFloat contentLabelWidth = kTitleMaxWidth;
@@ -66,11 +69,18 @@
     [_contentLabel setFrame:CGRectMake(kPadding_side, _titleLabel.frame.size.height + kPadding_side,
                                        contentLabelWidth, [PCNewsTableViewCell heigtForLabelString:_cellData[@"description"]
                                                                                       forWidth:contentLabelWidth
-                                                                                      withFont:[UIFont fontWithName:@"Arial" size:14.0f]])];
+                                                                                      withFont:[UIFont fontWithName:@"Arial" size:12.0f]])];
+    _contentLabel.numberOfLines = 0;
     if (![(id)[NSNull null] isEqual:_cellData[@"description"]]) {
         _contentLabel.text = _cellData[@"description"];
     }
+    _contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:_contentLabel];
+    
+    [_contentImageView setFrame:CGRectMake(self.contentView.frame.size.width - kImageMaxWidth - kPadding_side,
+                                          _titleLabel.frame.size.height + kPadding_side, kImageMaxWidth, kImageMaxHeight)];
+    _contentImageView.image = nil;
+    [self setNeedsLayout];
 }
 
 // -------------------------------------------------------------------------------
@@ -79,7 +89,7 @@
 // -------------------------------------------------------------------------------
 + (CGFloat) getCellHeightForContent:(NSDictionary*)contentData {
     
-    CGFloat cellHeight          = 0.0f;
+    CGFloat cellHeight          = kPadding_side * 2;
     CGFloat imageViewHeight     = 0.0f;
 
     // Calculate height for the title label...

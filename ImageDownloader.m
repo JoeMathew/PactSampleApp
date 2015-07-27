@@ -30,7 +30,7 @@
 {
     self.activeDownload = [NSMutableData data];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://is5.mzstatic.com/image/pf/us/r30/Purple7/v4/01/62/dd/0162dd87-f530-f5c5-052d-06a0654d3375/pr_source.100x100-75.png"]];//self.cellData[@"imageHref"]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.cellData[@"imageHref"]]];
     
     // alloc+init and start an NSURLConnection; release on completion/failure
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];

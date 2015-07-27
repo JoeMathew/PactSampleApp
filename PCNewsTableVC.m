@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = _tableTitle;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,10 +39,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [_rowData count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return _tableTitle;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,9 +69,9 @@
         }
         // if a download is deferred or in progress, return a placeholder image
         //pctCell.contentImageView.image = [UIImage imageNamed:@"Placeholder.png"];
-    } else {
-        NSLog(@"Reusing Image");
-        pctCell.imageView.image = (_rowData[indexPath.row])[@"image"];
+    } else if((_rowData[indexPath.row])[@"image"]){
+        NSLog(@"Row: %d. Reusing Image", indexPath.row);
+        pctCell.contentImageView.image = (_rowData[indexPath.row])[@"image"];
     }
     
     return pctCell;
@@ -95,8 +93,8 @@
         [imageDownloader setCompletionHandler:^{
             PCNewsTableViewCell *cell = (PCNewsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             if (nil != cellData[@"image"]) {
-                UIImage *img = (UIImage *)cellData[@"image"];
-                cell.contentImageView.image = img;
+                NSLog(@"Image download complete. Setting to row %d", indexPath.row);
+                cell.contentImageView.image = (UIImage *)((_rowData[indexPath.row])[@"image"]);
             }
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
         }];

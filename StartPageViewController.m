@@ -73,6 +73,9 @@
     [self.view addSubview:_spinner];
     [_spinner startAnimating];
     PCNewsTableVC *pcTableVC = [[[PCNewsTableVC alloc]init] autorelease];
+    UINavigationController *navigationController = [[[UINavigationController alloc] init] autorelease];
+    navigationController.viewControllers=[NSArray arrayWithObject:pcTableVC];
+    
 
     //Fetch web data asynchronously
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -92,7 +95,7 @@
             [_spinner stopAnimating];   //We got the data; dismiss the spinner
             if (nil != responseData) {
                 //Show the Table with data
-                [self presentViewController:pcTableVC animated:YES completion:nil];
+                [self presentViewController:navigationController animated:YES completion:nil];
             }
         });
     });
