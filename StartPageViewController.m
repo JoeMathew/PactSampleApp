@@ -13,7 +13,10 @@
 
 #define kWebDataUrl @"https://dl.dropboxusercontent.com/u/746330/facts.json"
 
-@interface StartPageViewController ()
+@interface StartPageViewController (){
+    __block NSData *responseData;
+    __block NSMutableDictionary *webResponse;
+}
 @property(nonatomic, retain)UIActivityIndicatorView *spinner;
 
 @end
@@ -69,6 +72,7 @@
     _spinner.hidesWhenStopped = YES;
     [self.view addSubview:_spinner];
     [_spinner startAnimating];
+    PCNewsTableVC *pcTableVC = [[[PCNewsTableVC alloc]init] autorelease];
 
     //Fetch web data asynchronously
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -77,18 +81,16 @@
         NSString *string        = [NSString stringWithContentsOfURL:searchURL
                                                             encoding:NSISOLatin1StringEncoding
                                                                error:&error];
-        __block NSData *responseData    = [[string dataUsingEncoding:NSUTF8StringEncoding] autorelease];
-        
-        __block NSMutableDictionary *webResponse = [[NSJSONSerialization JSONObjectWithData:responseData
+        responseData            = [string dataUsingEncoding:NSUTF8StringEncoding];
+        webResponse             = [NSJSONSerialization JSONObjectWithData:responseData
                                                                             options:NSJSONReadingMutableContainers
-                                                                              error:&error] autorelease];
-    
+                                                                              error:&error];
+        pcTableVC.tableTitle     = webResponse[@"title"];
+        pcTableVC.rowData        = webResponse[@"rows"];
+        
         dispatch_async(dispatch_get_main_queue(),^{
             [_spinner stopAnimating];   //We got the data; dismiss the spinner
             if (nil != responseData) {
-                PCNewsTableVC *pcTableVC = [[PCNewsTableVC alloc]init];
-                pcTableVC.tableTitle     = webResponse[@"title"];
-                pcTableVC.rowData        = [webResponse[@"rows"] mutableCopy];
                 //Show the Table with data
                 [self presentViewController:pcTableVC animated:YES completion:nil];
             }
