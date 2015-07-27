@@ -31,7 +31,6 @@
     self.activeDownload = [NSMutableData data];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.cellData[@"imageHref"]]];
-    
     // alloc+init and start an NSURLConnection; release on completion/failure
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -86,7 +85,6 @@
         CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
         [image drawInRect:imageRect];
         self.cellData[@"image"] = UIGraphicsGetImageFromCurrentImageContext();
-        //UIImage *img = self.cellData[@"image"];
         UIGraphicsEndImageContext();
     }
     else

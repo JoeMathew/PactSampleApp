@@ -29,8 +29,9 @@
     if (self) {
         
         _titleLabel       = [[[UILabel alloc] init]autorelease];
-        [_titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:18.0f]];
+        [_titleLabel setFont:[UIFont fontWithName:@"TimesNewRomanPS-BoldMT" size:18.0f]];
         _contentLabel     = [[[UILabel alloc]init]autorelease];
+        [_contentLabel setFont:[UIFont fontWithName:@"ArialMT" size:12.0f]];
         _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width - kImageMaxWidth - kPadding_side,
                                                                           20, kImageMaxWidth, kImageMaxHeight)];
     }
@@ -49,7 +50,7 @@
     
     [_titleLabel setFrame:CGRectMake(kPadding_side, kPadding_side, kTitleMaxWidth, [PCNewsTableViewCell heigtForLabelString:_cellData[@"title"]
                                                                                       forWidth:kTitleMaxWidth
-                                                                                      withFont:[UIFont fontWithName:@"HelveticaNeue" size:18.0f]])];
+                                                                                      withFont:[UIFont fontWithName:@"TimesNewRomanPS-BoldMT" size:18.0f]])];
     _titleLabel.numberOfLines = 0;
     if (![(id)[NSNull null] isEqual:_cellData[@"title"]]) {
         _titleLabel.text = _cellData[@"title"];
@@ -69,7 +70,7 @@
     [_contentLabel setFrame:CGRectMake(kPadding_side, _titleLabel.frame.size.height + kPadding_side,
                                        contentLabelWidth, [PCNewsTableViewCell heigtForLabelString:_cellData[@"description"]
                                                                                       forWidth:contentLabelWidth
-                                                                                      withFont:[UIFont fontWithName:@"Arial" size:12.0f]])];
+                                                                                      withFont:[UIFont fontWithName:@"ArialMT" size:12.0f]])];
     _contentLabel.numberOfLines = 0;
     if (![(id)[NSNull null] isEqual:_cellData[@"description"]]) {
         _contentLabel.text = _cellData[@"description"];
@@ -95,7 +96,7 @@
     // Calculate height for the title label...
     CGFloat labelHeight         = [self heigtForLabelString:contentData[@"title"]
                                                    forWidth:kTitleMaxWidth
-                                                   withFont:[UIFont fontWithName:@"HelveticaNeue" size:18.0f]];
+                                                   withFont:[UIFont fontWithName:@"TimesNewRomanPS-BoldMT" size:18.0f]];
     cellHeight += labelHeight;
     
     // Calculate height for the description label...
@@ -107,7 +108,7 @@
     }
     labelHeight     = [self heigtForLabelString:contentData[@"description"]
                                        forWidth:contentLabelWidth
-                                       withFont:[UIFont fontWithName:@"Arial" size:14.0f]];
+                                       withFont:[UIFont fontWithName:@"ArialMT" size:12.0f]];
     
     if (labelHeight > imageViewHeight) {
         cellHeight += labelHeight;

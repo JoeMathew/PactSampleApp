@@ -62,15 +62,8 @@
     //If Image is not already downloaded and the image url is not null, start downloading the image for the row
     if ((!(_rowData[indexPath.row])[@"image"]) &&
         (![(id)[NSNull null] isEqual: (_rowData[indexPath.row])[@"imageHref"]])) {
-        //To keep the tableview scrolling smooth...
-        if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
-        {
             [self startImgDownload:_rowData[indexPath.row] forIndexPath:indexPath];
-        }
-        // if a download is deferred or in progress, return a placeholder image
-        //pctCell.contentImageView.image = [UIImage imageNamed:@"Placeholder.png"];
     } else if((_rowData[indexPath.row])[@"image"]){
-        NSLog(@"Row: %d. Reusing Image", indexPath.row);
         pctCell.contentImageView.image = (_rowData[indexPath.row])[@"image"];
     }
     
@@ -93,7 +86,6 @@
         [imageDownloader setCompletionHandler:^{
             PCNewsTableViewCell *cell = (PCNewsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             if (nil != cellData[@"image"]) {
-                NSLog(@"Image download complete. Setting to row %d", indexPath.row);
                 cell.contentImageView.image = (UIImage *)((_rowData[indexPath.row])[@"image"]);
             }
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
