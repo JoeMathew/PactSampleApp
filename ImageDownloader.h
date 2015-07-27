@@ -10,11 +10,9 @@
 
 @interface ImageDownloader : NSObject
 
-//@property (nonatomic, strong) AppRecord *appRecord;
 @property(nonatomic, retain) NSMutableDictionary * cellData;
 @property (nonatomic, copy) void (^completionHandler)(void);
 
 - (void)startDownload;
-- (void)cancelDownload;
 
 @end

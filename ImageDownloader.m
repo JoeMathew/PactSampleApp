@@ -36,25 +36,6 @@
     self.imageConnection = conn;
 }
 
-// -------------------------------------------------------------------------------
-//	cancelDownload
-// -------------------------------------------------------------------------------
-- (void)cancelDownload
-{
-    // Clear the activeDownload property to allow later attempts
-    /*if (self.activeDownload) {
-        [self.activeDownload release];
-        self.activeDownload = nil;
-    }
-    
-    // Release the connection now that it's finished
-    if (self.imageConnection) {
-        [self.imageConnection release];
-        self.imageConnection = nil;
-    }*/
-}
-
-
 #pragma mark - NSURLConnectionDelegate
 
 // -------------------------------------------------------------------------------
@@ -104,17 +85,6 @@
     {
         self.cellData[@"image"] = image;
     }
-    
-    /*if (self.activeDownload) {
-        [self.activeDownload release];
-        self.activeDownload = nil;
-    }
-    
-    // Release the connection now that it's finished
-    if (self.imageConnection) {
-        [self.imageConnection release];
-        self.imageConnection = nil;
-    }*/
     
     // call our delegate and tell it that our icon is ready for display
     if (self.completionHandler)
