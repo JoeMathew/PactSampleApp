@@ -14,8 +14,8 @@
 #define kAppIconSize 48
 
 @interface ImageDownloader ()
-@property (nonatomic, strong) NSMutableData *activeDownload;
-@property (nonatomic, strong) NSURLConnection *imageConnection;
+@property (nonatomic, retain) NSMutableData *activeDownload;
+@property (nonatomic, retain) NSURLConnection *imageConnection;
 @end
 
 
@@ -30,9 +30,8 @@
 {
     self.activeDownload = [NSMutableData data];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.cellData[@"imageHref"]]];
-    // alloc+init and start an NSURLConnection; release on completion/failure
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLRequest *request = [[NSURLRequest requestWithURL:[NSURL URLWithString:self.cellData[@"imageHref"]]] autorelease];
+    NSURLConnection *conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
     
     self.imageConnection = conn;
 }
@@ -42,9 +41,17 @@
 // -------------------------------------------------------------------------------
 - (void)cancelDownload
 {
-    [self.imageConnection cancel];
-    self.imageConnection = nil;
-    self.activeDownload = nil;
+    // Clear the activeDownload property to allow later attempts
+    /*if (self.activeDownload) {
+        [self.activeDownload release];
+        self.activeDownload = nil;
+    }
+    
+    // Release the connection now that it's finished
+    if (self.imageConnection) {
+        [self.imageConnection release];
+        self.imageConnection = nil;
+    }*/
 }
 
 
@@ -64,10 +71,16 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     // Clear the activeDownload property to allow later attempts
-    self.activeDownload = nil;
+    /*if (self.activeDownload) {
+        [self.activeDownload release];
+        self.activeDownload = nil;
+    }
     
     // Release the connection now that it's finished
-    self.imageConnection = nil;
+    if (self.imageConnection) {
+        [self.imageConnection release];
+        self.imageConnection = nil;
+    }*/
 }
 
 // -------------------------------------------------------------------------------
@@ -92,10 +105,16 @@
         self.cellData[@"image"] = image;
     }
     
-    self.activeDownload = nil;
+    /*if (self.activeDownload) {
+        [self.activeDownload release];
+        self.activeDownload = nil;
+    }
     
     // Release the connection now that it's finished
-    self.imageConnection = nil;
+    if (self.imageConnection) {
+        [self.imageConnection release];
+        self.imageConnection = nil;
+    }*/
     
     // call our delegate and tell it that our icon is ready for display
     if (self.completionHandler)

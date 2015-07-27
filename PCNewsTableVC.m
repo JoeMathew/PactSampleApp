@@ -89,6 +89,7 @@
                 cell.contentImageView.image = (UIImage *)((_rowData[indexPath.row])[@"image"]);
             }
             [self.imageDownloadsInProgress removeObjectForKey:indexPath];
+            //[imageDownloader release];
         }];
         (self.imageDownloadsInProgress)[indexPath] = imageDownloader;
         [imageDownloader startDownload];
